@@ -25,10 +25,15 @@ impl Triangle {
 
 impl fmt::Display for Triangle {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        let row_count = self.0.len();
+
         let rows = self
             .0
             .iter()
-            .map(|level| level.to_string())
+            .map(|row| {
+                let row = row.to_string();
+                return format!("{: ^1$}", row, row_count * 3);
+            })
             .collect::<Vec<String>>()
             .join("\n");
 
